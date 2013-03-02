@@ -1,0 +1,15 @@
+[Unit]
+Description=Unicorn <%= application %> application server
+After=network.target
+
+[Service]
+Type=forking
+User=<%= unicorn_user %>
+PIDFile=<%= unicorn_pid %>
+WorkingDirectory=<%= current_path %>
+ExecStart=/home/<%= unicorn_user %>/.rbenv/shims/bundle exec unicorn -D -c /home/<%= unicorn_user %>/apps/<%= application %>/shared/config/unicorn.rb -E production
+ExecReload=/bin/kill -s USR2 $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
