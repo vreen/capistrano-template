@@ -4,7 +4,7 @@ load 'config/deployment/base'
 load 'config/deployment/nginx'
 load 'config/deployment/unicorn'
 
-server "froggin.de", :web, :app, :db, primary: true
+server "hostname", :web, :app, :db, primary: true
 
 set :domain, "domain.de"
 set :application, "appname"
@@ -14,7 +14,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, :git
-set :repository, "ssh://deployer@froggin.de/home/deployer/git/appname/"
+set :repository, "ssh://deployer@hostname/home/deployer/git/appname/"
 set :branch, "master"
 
 default_run_options[:pty] = true
